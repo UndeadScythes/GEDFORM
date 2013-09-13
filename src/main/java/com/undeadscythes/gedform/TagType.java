@@ -21,5 +21,9 @@ public enum TagType {
     /**
      * A custom defined cluster
      */
-    CUSTOM;
+    CUSTOM,
+    /**
+     * An internal relationship between records
+     */
+    XREF;
 }
