@@ -4,13 +4,23 @@
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>GEDFORM</artifactId>
-  <version>0.0.0</version>
+  <version>0.1.0</version>
   <packaging>jar</packaging>
   <properties>
       <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <dev.build.timestamp>${maven.build.timestamp}</dev.build.timestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+
 
   <build>
     <resources>
@@ -80,6 +90,7 @@
 	    </goals>
 	    <configuration>
 	      <excludes>
+		<exclude>com.undeadscythes:GEDFORM</exclude>
 	      </excludes>
 	    </configuration>
 	  </execution>
