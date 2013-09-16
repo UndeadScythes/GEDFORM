@@ -4,7 +4,7 @@
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>GEDFORM</artifactId>
-  <version>0.1.1</version>
+  <version>1.1.2</version>
   <packaging>jar</packaging>
   <properties>
       <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -17,6 +17,12 @@
       <artifactId>junit</artifactId>
       <version>RELEASE</version>
       <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
       <type>jar</type>
     </dependency>
   </dependencies>
@@ -100,8 +106,7 @@
   </build>
 
   <name>GEDFORM</name>
-  <description>
-A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
+  <description>A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
 Family History Department of The Church of Jesus Christ of Latter-day Saints for
 exchanging computerized genealogical data. The current standard is version 5.5,
 which is documented [here](https://devnet.familysearch.org/docs/gedcom/gedcom55.pdf).
@@ -109,8 +114,7 @@ which is documented [here](https://devnet.familysearch.org/docs/gedcom/gedcom55.
 The GEDCOM standard branches from an idea of a GEneral Data FORMat for
 exchanging computerized databased data. This project provides access to such
 .ged files, providing a useful parsing script which can be used to evaluate or
-generate files in this format.
-  </description>
+generate files in this format.</description>
   <url>https://github.com/UndeadScythes/GEDFORM</url>
   <licenses>
     <license>

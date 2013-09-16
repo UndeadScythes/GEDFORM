@@ -22,15 +22,17 @@ public class LineStruct {
      * This line's value
      */
     public final String value;
+    /**
+     * Whether this {@link LineStruct#value} is a pointer
+     */
+    public final boolean pointer;
 
     /**
      *
-     * @param level
      * @param tag
-     * @param value
      */
-    public LineStruct(final int level, final Tag tag, final String value) {
-        this(level, "", tag, value);
+    public LineStruct(final Tag tag) {
+        this(0, tag);
     }
 
     /**
@@ -39,13 +41,34 @@ public class LineStruct {
      * @param tag
      */
     public LineStruct(final int level, final Tag tag) {
-        this(level, "", tag, "");
+        this(level, tag, "");
     }
 
     /**
      *
      * @param level
-     * @param xref 
+     * @param tag
+     * @param value
+     */
+    public LineStruct(final int level, final Tag tag, final String value) {
+        this(level, tag, value, false);
+    }
+
+    /**
+     *
+     * @param level
+     * @param tag
+     * @param value
+     * @param pointer
+     */
+    public LineStruct(final int level, final Tag tag, final String value, final boolean pointer) {
+        this(level, "", tag, value, pointer);
+    }
+
+    /**
+     *
+     * @param level
+     * @param xref
      * @param tag
      */
     public LineStruct(final int level, final String xref, final Tag tag) {
@@ -60,9 +83,22 @@ public class LineStruct {
      * @param value
      */
     public LineStruct(final int level, final String xref, final Tag tag, final String value) {
+        this(level, xref, tag, value, false);
+    }
+
+    /**
+     *
+     * @param level
+     * @param xref
+     * @param tag
+     * @param value
+     * @param pointer
+     */
+    public LineStruct(final int level, final String xref, final Tag tag, final String value, final boolean pointer) {
         this.level = level;
         this.xref = xref;
         this.tag = tag;
         this.value = value;
+        this.pointer = pointer;
     }
 }

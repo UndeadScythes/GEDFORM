@@ -22,6 +22,15 @@ public class Record extends ArrayList<LineStruct> {
 
     /**
      *
+     * @param list
+     */
+    public Record(final List<LineStruct> list) {
+        super(list.size());
+        addAll(list);
+    }
+
+    /**
+     *
      * @param size
      */
     public Record(final int size) {
@@ -84,7 +93,7 @@ public class Record extends ArrayList<LineStruct> {
 
     /**
      *
-     * @return A copy of this {@link Record}
+     * @return Mutable copy of this {@link Record}
      */
     public Record copy() {
         final Record record = new Record(this.size());
@@ -98,13 +107,5 @@ public class Record extends ArrayList<LineStruct> {
      */
     public Tag getTag() {
         return get(0).tag;
-    }
-
-    /**
-     *
-     * @return The {@link TagType} of the record header
-     */
-    public TagType getType() {
-        return getTag().getType();
     }
 }

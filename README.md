@@ -1,4 +1,4 @@
-# GEDFORM - 0.1.1 #
+# GEDFORM - 1.1.2 #
 
 A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
 Family History Department of The Church of Jesus Christ of Latter-day Saints for
@@ -12,10 +12,9 @@ generate files in this format.
 
 &copy; 2013 UndeadScythes of UndeadScythes' Empire
 
-GEDFORM source code can be found on
-[GitHub](https://github.com/UndeadScythes/GEDFORM) and is released under the
-CC BY-NC-SA 2.0 UK license. A copy of this licence is located in the file named
-LICENCE.lic, if this file is not present the text can be found
-[here](http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode).
+Feel free to post issues and suggestions on [GitHub](https://github.com/UndeadScythes/GEDFORM).
+GEDFORM source code is released under the CC BY-NC-SA 2.0 UK license.
+A copy of this licence is located in the file named LICENCE.lic, if this file is
+not present the text can be found [here](http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode).
 
-Last edited on 2013-09-13.
+Last edited on 2013-09-16.
