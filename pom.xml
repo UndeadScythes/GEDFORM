@@ -1,10 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.undeadscythes</groupId>
   <artifactId>GEDFORM</artifactId>
-  <version>1.1.2</version>
+  <version>1.2.0</version>
+  <name>GEDFORM</name>
+  <description>A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
+Family History Department of The Church of Jesus Christ of Latter-day Saints for
+exchanging computerized genealogical data. The current standard is version 5.5,
+which is documented [here](https://devnet.familysearch.org/docs/gedcom/gedcom55.pdf).
+
+The GEDCOM standard branches from an idea of a GEneral Data FORMat for
+exchanging computerized databased data. This project provides access to such
+.ged files, providing a useful parsing script which can be used to evaluate or
+generate files in this format.</description>
+  <url>https://github.com/UndeadScythes/GEDFORM</url>
+  <licenses>
+    <license>
+      <name>Creative Commons BY-NC-SA 2.0 UK</name>
+      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
+      <distribution>repo</distribution>
+      <comments>Attribution - Non-Commercial - Share-Alike</comments>
+    </license>
+  </licenses>
+  <prerequisites>
+    <maven>2.2.1</maven>
+  </prerequisites>
   <packaging>jar</packaging>
   <properties>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -13,10 +35,9 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
+      <groupId>com.undeadscythes</groupId>
+      <artifactId>BetterReader</artifactId>
+      <version>1.0.2</version>
       <type>jar</type>
     </dependency>
     <dependency>
@@ -25,30 +46,17 @@
       <version>3.1</version>
       <type>jar</type>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
   </dependencies>
 
-
   <build>
-    <resources>
-      <resource>
-	<directory>src/main/resources</directory>
-	<filtering>true</filtering>
-      </resource>
-    </resources>
     <plugins>
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-clean-plugin</artifactId>
-	<version>2.5</version>
-	<executions>
-	  <execution>
-	    <phase>initialize</phase>
-	    <goals>
-	      <goal>clean</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -85,43 +93,19 @@
 	</executions>
       </plugin>
       <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-dependency-plugin</artifactId>
-	<version>2.8</version>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>versions-maven-plugin</artifactId>
+	<version>2.1</version>
 	<executions>
 	  <execution>
-	    <phase>process-sources</phase>
+	    <phase>install</phase>
 	    <goals>
-	      <goal>purge-local-repository</goal>
+	      <goal>display-plugin-updates</goal>
+	      <goal>display-dependency-updates</goal>
 	    </goals>
-	    <configuration>
-	      <excludes>
-		<exclude>com.undeadscythes:GEDFORM</exclude>
-	      </excludes>
-	    </configuration>
 	  </execution>
 	</executions>
       </plugin>
     </plugins>
   </build>
-
-  <name>GEDFORM</name>
-  <description>A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
-Family History Department of The Church of Jesus Christ of Latter-day Saints for
-exchanging computerized genealogical data. The current standard is version 5.5,
-which is documented [here](https://devnet.familysearch.org/docs/gedcom/gedcom55.pdf).
-
-The GEDCOM standard branches from an idea of a GEneral Data FORMat for
-exchanging computerized databased data. This project provides access to such
-.ged files, providing a useful parsing script which can be used to evaluate or
-generate files in this format.</description>
-  <url>https://github.com/UndeadScythes/GEDFORM</url>
-  <licenses>
-    <license>
-      <name>Creative Commons BY-NC-SA 2.0 UK</name>
-      <url>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode</url>
-      <distribution>repo</distribution>
-      <comments>Attribution - Non-Commercial - Share-Alike</comments>
-    </license>
-  </licenses>
 </project>
