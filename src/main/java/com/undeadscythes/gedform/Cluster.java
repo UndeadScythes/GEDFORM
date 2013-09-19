@@ -1,5 +1,6 @@
 package com.undeadscythes.gedform;
 
+import com.undeadscythes.gedform.exception.*;
 import java.util.*;
 
 /**
@@ -14,16 +15,7 @@ public class Cluster extends ArrayList<LineStruct> {
     private int index = 0;
 
     /**
-     * Blank {@link Cluster}.
-     */
-    public Cluster() {
-        this(0);
-    }
-
-    /**
      * New {@link Cluster} from a given list of {@link LineStruct}s.
-     *
-     * @param list {@link LineStruct}s the {@link Cluster} should contain
      */
     public Cluster(final List<LineStruct> list) {
         super(list.size());
@@ -32,17 +24,13 @@ public class Cluster extends ArrayList<LineStruct> {
 
     /**
      * {@link Cluster} with a given initial capacity.
-     *
-     * @param size
      */
     public Cluster(final int size) {
         super(size);
     }
 
     /**
-     * Grab the first {@link LineStruct} of this {@link Cluster}.
-     *
-     * @return Header {@link LineStruct}
+     * Get the first {@link LineStruct} of this {@link Cluster}.
      */
     public LineStruct pullHead() {
         index = 1;
@@ -50,10 +38,8 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
-     * Grab and remove the first {@link LineStruct} of this {@link Cluster},
+     * Get and remove the first {@link LineStruct} of this {@link Cluster},
      * this method deletes the head from the {@link Cluster}.
-     *
-     * @return Header {@link LineStruct}
      */
     public LineStruct popHead() {
         final LineStruct line = get(0);
@@ -69,12 +55,10 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
-     * Grab the next sub-{@link Cluster}.
-     *
-     * @return Next {@link Cluster}
+     * Get the next sub-{@link Cluster}.
      */
     public Cluster pullCluster() {
-        final Cluster record = new Cluster();
+        final Cluster record = new Cluster(this.size());
         if (hasNext()) {
             final ListIterator<LineStruct> iter = listIterator(index);
             final int level = get(index).level;
@@ -91,31 +75,38 @@ public class Cluster extends ArrayList<LineStruct> {
 
     /**
      * Check if there are any more sub{@link Cluster}s to read.
-     *
-     * @return Check if there is another cluster to read
      */
     public boolean hasNext() {
         return listIterator(index).hasNext();
     }
 
     /**
-     * Copy this {@link Cluster}.
-     *
-     * @return Mutable copy of this {@link Cluster}
+     * Get an immutable copy of this {@link Cluster}.
      */
     public Cluster copy() {
-        final Cluster record = new Cluster(this.size());
-        record.addAll(this);
-        return record;
+        final Cluster cluster = new Cluster(this.size());
+        for (LineStruct line : this) {
+            cluster.add(line.copy());
+        }
+        return cluster;
     }
 
     /**
-     * Grab the {@link LineStruct#tag} of the head of this {@link Cluster}, all
+     * Get the {@link LineStruct#tag tag} of the head of this {@link Cluster}, all
      * sub-{@link Cluster}s should be related to this tag.
-     *
-     * @return {@link LineStruct#tag} of the record header
      */
     public String getTag() {
         return get(0).tag;
+    }
+
+    /**
+     * Get the value of the first available line with a matching tag.
+     */
+    public String getValue(final String tag) throws NoTagSetException {
+        final int subLevel = get(0).level - 1;
+        for (LineStruct line : this) {
+            if (line.level == subLevel && line.tag.equals(tag)) return line.value;
+        }
+        throw new NoTagSetException(tag);
     }
 }

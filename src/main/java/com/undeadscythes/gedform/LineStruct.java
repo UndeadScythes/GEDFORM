@@ -56,7 +56,7 @@ public class LineStruct {
      * @throws ParsingException When a parsing error occurs
      */
     public LineStruct(final String string) throws ParsingException {
-        final String[] split = string.split(" ");
+        final String[] split = string.split(" "); //TODO: Check that pointers are always parsed
         try {
             level = parseInt(split[0]);
         } catch (NumberFormatException ex) {
@@ -90,5 +90,20 @@ public class LineStruct {
                 pointer = false;
             }
         }
+    }
+
+    private LineStruct(final LineStruct line) {
+        this.level = line.level;
+        this.tag = line.tag;
+        this.xref = line.xref;
+        this.value = line.value;
+        this.pointer = line.pointer;
+    }
+
+    /**
+     * Get an immutable copy of this {@link LineStruct}.
+     */
+    public LineStruct copy() {
+        return new LineStruct(this);
     }
 }

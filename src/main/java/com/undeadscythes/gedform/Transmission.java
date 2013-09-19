@@ -15,10 +15,6 @@ public class Transmission extends ArrayList<Cluster> {
 
     /**
      * Parse a file into a {@link Transmission}.
-     *
-     * @param file
-     * @return Parsed {@link Transmission}
-     * @throws ParsingException When a parsing error occurs
      */
     public static Transmission parse(final File file) throws ParsingException {
         final BetterReader reader;
@@ -27,19 +23,19 @@ public class Transmission extends ArrayList<Cluster> {
         } catch (FileNotFoundException ex) {
             throw new ParsingException("Could not find specified file.", ex);
         }
-        final Transmission transmission = new Transmission();
-        Cluster cluster = new Cluster();
+        final Transmission transmission = new Transmission(0);
+        Cluster cluster = new Cluster(0);
         while (reader.hasNext()) {
             final String line = reader.getLine();
             final LineStruct struct;
             try {
-                struct = new LineStruct(line);
+                struct = new LineStruct(line); //TODO: Add support for CONT and CONC
             } catch (ParsingException ex) {
-                throw new ParsingException("Could not parse line #" + reader.getLineNo() + ".", ex);
+                throw new ParsingException("Could not parse line " + reader.getLineNo() + ".", ex);
             }
             if (struct.level == 0 && !cluster.isEmpty()) {
                 transmission.add(cluster);
-                cluster = new Cluster();
+                cluster = new Cluster(0);
             }
             cluster.add(struct);
         }
@@ -50,25 +46,14 @@ public class Transmission extends ArrayList<Cluster> {
     private int index = 0;
 
     /**
-     * Blank {@link Transmission}.
-     */
-    public Transmission() {
-        this(0);
-    }
-
-    /**
      * {@link Transmission} with a given initial capacity.
-     *
-     * @param size Initial capacity
      */
     public Transmission(final int size) {
         super(size);
     }
 
     /**
-     * Copy this {@link Transmission}.
-     *
-     * @return Mutable copy of this {@link Transmission}
+     * Get an immutable copy this {@link Transmission}.
      */
     public Transmission copy() {
         final Transmission copy = new Transmission(this.size());
@@ -80,8 +65,6 @@ public class Transmission extends ArrayList<Cluster> {
 
     /**
      * Grabs the next {@link Cluster} in this {@link Transmission}.
-     *
-     * @return The next {@link Cluster}
      */
     public Cluster pullCluster() {
         final Cluster cluster = get(index);
@@ -92,8 +75,6 @@ public class Transmission extends ArrayList<Cluster> {
     /**
      * Check if there is another {@link Cluster} to return in this
      * {@link Transmission}.
-     *
-     * @return True if there is another {@link Cluster} to pull
      */
     public boolean hasNext() {
         return size() > index;
@@ -101,8 +82,6 @@ public class Transmission extends ArrayList<Cluster> {
 
     /**
      * YAMLize this {@link Transmission}.
-     *
-     * @return This {@link Transmission} in valid YAML form
      */
     public String yamlize() {
         return ""; //TODO: Implement the yamlizer
@@ -110,10 +89,15 @@ public class Transmission extends ArrayList<Cluster> {
 
     /**
      * Validate this {@link Transmission}.
-     *
-     * @return True if this {@link Transmission} has valid form
      */
     public boolean verify() {
         return true; //TODO: Implement verifier
+    }
+
+    /**
+     * XMLize this {@link Transmission}.
+     */
+    public String xmlize() {
+        return ""; //TODO: Implement me
     }
 }

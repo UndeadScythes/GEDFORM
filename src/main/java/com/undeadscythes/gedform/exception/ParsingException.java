@@ -10,9 +10,6 @@ public class ParsingException extends Exception {
 
     /**
      * Allows chaining of exceptions.
-     *
-     * @param message Description of this parse error
-     * @param exception Cause of this parse error
      */
     public ParsingException (final String message, final Exception exception) {
         super(message, exception);
@@ -20,8 +17,6 @@ public class ParsingException extends Exception {
 
     /**
      * When no previous exception was caught.
-     *
-     * @param message Cause of this parse error
      */
     public ParsingException (final String message) {
         super(message);
