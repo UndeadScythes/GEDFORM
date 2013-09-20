@@ -38,16 +38,6 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
-     * Get and remove the first {@link LineStruct} of this {@link Cluster},
-     * this method deletes the head from the {@link Cluster}.
-     */
-    public LineStruct popHead() {
-        final LineStruct line = get(0);
-        remove(0);
-        return line;
-    }
-
-    /**
      * Reset the reading iterator to zero.
      */
     public void reset() {
