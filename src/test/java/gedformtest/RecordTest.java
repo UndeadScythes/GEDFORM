@@ -19,8 +19,7 @@ public class RecordTest extends Assert {
     @Test
     public void testHeader() {
         assertEquals("pullHead-tag", "A", record.pullHead().tag);
-        assertEquals("popHead-level", 0, record.popHead().level);
-        assertEquals("pullHead-level", "B", record.pullHead().tag);
+        assertEquals("pullHead-level", 0, record.pullHead().level);
     }
 
     @Test
@@ -38,7 +37,7 @@ public class RecordTest extends Assert {
 
     @Test
     public void testHasNext() {
-        record.popHead();
+        record.pullHead();
         record.pullCluster();
         assertTrue("hasNext-true", record.hasNext());
         record.pullCluster();
