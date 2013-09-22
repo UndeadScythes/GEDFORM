@@ -1,6 +1,7 @@
 package gedformtest; //TODO: Implement more tests
 
 import com.undeadscythes.gedform.*;
+import com.undeadscythes.gedform.exception.*;
 import gedformtest.implementation.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -8,17 +9,17 @@ import org.junit.*;
 /**
  * @author UndeadScythes
  */
-public class RecordTest extends Assert {
+public class ClusterTest extends Assert {
     private Cluster record;
 
     @Before
-    public void init() {
-        record = ABCs.CLUSTER.copy();
+    public void init() throws ParsingException {
+        record = new TGC55C().pullCluster();
     }
 
     @Test
     public void testHeader() {
-        assertEquals("pullHead-tag", "A", record.pullHead().tag);
+        assertEquals("pullHead-tag", "HEAD", record.pullHead().tag);
         assertEquals("pullHead-level", 0, record.pullHead().level);
     }
 
@@ -32,7 +33,7 @@ public class RecordTest extends Assert {
 
     @Test
     public void testGet() {
-        assertEquals("getTag", "A", record.getTag());
+        assertEquals("getTag", "HEAD", record.getTag());
     }
 
     @Test
@@ -40,16 +41,18 @@ public class RecordTest extends Assert {
         record.pullHead();
         record.pullCluster();
         assertTrue("hasNext-true", record.hasNext());
-        record.pullCluster();
+        for (int i = 0; i < 13; i++) {
+            record.pullCluster();
+        }
         assertFalse("hasNext-false", record.hasNext());
     }
 
     @Test
     public void testCluster() {
-        assertEquals("pullCluster-1", 6, record.pullCluster().size());
+        assertEquals("pullCluster-1", 35, record.pullCluster().size());
         record.reset();
         record.pullHead();
-        assertEquals("pullCluster-2", 3, record.pullCluster().size());
-        assertEquals("pullCluster-3", 2, record.pullCluster().size());
+        assertEquals("pullCluster-2", 17, record.pullCluster().size());
+        assertEquals("pullCluster-3", 1, record.pullCluster().size());
     }
 }

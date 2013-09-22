@@ -13,37 +13,55 @@ import java.util.*;
 public class Transmission extends ArrayList<Cluster> {
     private static final long serialVersionUID = 1L;
 
+    private int index = 0;
+
+    /**
+     * Parse a file into a {@link Transmission}.
+     *
+     * @deprecated Added new constructor {@link #Transmission(File) Transmission(File)}
+     */
+    @Deprecated
+    public static Transmission parse(final File file) throws ParsingException {
+        return new Transmission(file);
+    }
+
     /**
      * Parse a file into a {@link Transmission}.
      */
-    public static Transmission parse(final File file) throws ParsingException {
+    public Transmission(final File file) throws ParsingException {
+        super(0);
         final BetterReader reader;
         try {
             reader = new BetterReader(file);
         } catch (FileNotFoundException ex) {
             throw new ParsingException("Could not find specified file.", ex);
         }
-        final Transmission transmission = new Transmission(0);
         Cluster cluster = new Cluster(0);
+        int lineNo = -1;
         while (reader.hasNext()) {
             final String line = reader.getLine();
             final LineStruct struct;
             try {
-                struct = new LineStruct(line); //TODO: Add support for CONT and CONC
+                struct = new LineStruct(line);
             } catch (ParsingException ex) {
                 throw new ParsingException("Could not parse line " + reader.getLineNo() + ".", ex);
             }
-            if (struct.level == 0 && !cluster.isEmpty()) {
-                transmission.add(cluster);
-                cluster = new Cluster(0);
+            if ("CONT".equals(struct.tag)) {
+                cluster.set(lineNo, cluster.get(lineNo).cont(struct.value));
+            } else if ("CONC".equals(struct.tag)) {
+                cluster.set(lineNo, cluster.get(lineNo).conc(struct.value));
+            } else {
+                lineNo++;
+                if (struct.level == 0 && !cluster.isEmpty()) {
+                    add(cluster);
+                    cluster = new Cluster(0);
+                    lineNo = 0;
+                }
+                cluster.add(struct);
             }
-            cluster.add(struct);
         }
-        transmission.add(cluster);
-        return transmission;
+        add(cluster);
     }
-
-    private int index = 0;
 
     /**
      * {@link Transmission} with a given initial capacity.

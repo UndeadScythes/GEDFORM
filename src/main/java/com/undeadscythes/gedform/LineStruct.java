@@ -100,10 +100,32 @@ public class LineStruct {
         this.pointer = line.pointer;
     }
 
+    private LineStruct(final int level, final String tag, final String xref, final String value, final boolean pointer) {
+        this.level = level;
+        this.tag = tag;
+        this.xref = xref;
+        this.value = value;
+        this.pointer = pointer;
+    }
+
     /**
      * Get an immutable copy of this {@link LineStruct}.
      */
     public LineStruct copy() {
         return new LineStruct(this);
+    }
+
+    /**
+     * Add another line of text onto this {@link LineStruct}.
+     */
+    public LineStruct cont(final String value) {
+        return new LineStruct(level, tag, xref, this.value + "\n" + value, pointer);
+    }
+
+    /**
+     * Concatenate a line of text onto the end of this {@link LineStruct}.
+     */
+    public LineStruct conc(final String value) {
+        return new LineStruct(level, tag, xref, this.value + value, pointer);
     }
 }
