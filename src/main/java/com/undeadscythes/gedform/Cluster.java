@@ -12,6 +12,11 @@ import java.util.*;
 public class Cluster extends ArrayList<LineStruct> {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Convenience field for an empty {@link Cluster}.
+     */
+    public static final Cluster EMPTY = new Cluster(0);
+
     private int index = 0;
 
     /**
