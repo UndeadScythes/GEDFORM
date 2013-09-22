@@ -53,6 +53,15 @@ public class Transmission extends ArrayList<Cluster> {
     }
 
     /**
+     * {@link Transmission} with zero initial capacity.
+     *
+     * @see #Transmission(int) Transmission(int)
+     */
+    public Transmission() {
+        super(0);
+    }
+
+    /**
      * Get an immutable copy this {@link Transmission}.
      */
     public Transmission copy() {
