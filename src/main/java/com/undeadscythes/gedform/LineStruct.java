@@ -56,7 +56,7 @@ public class LineStruct {
      * @throws ParsingException When a parsing error occurs
      */
     public LineStruct(final String string) throws ParsingException {
-        final String[] split = string.split(" "); //TODO: Check that pointers are always parsed
+        final String[] split = string.split(" ");
         try {
             level = parseInt(split[0]);
         } catch (NumberFormatException ex) {
@@ -74,10 +74,17 @@ public class LineStruct {
             tag = split[2];
             if (split.length == MIN_XREF_ELEMENTS) { // LVL XREF TAG
                 value = "";
-            } else { // LVL XREF TAG VAL
-                value = parseValue(split, 3);
+                pointer = false;
+            } else {
+                final String temp = parseValue(split, 3);
+                if (temp.matches(XREF_REGEX)) { // LVL XREF TAG PTR
+                    value = parseXREF(temp);
+                    pointer = true;
+                } else { // LVL XREF TAG VAL
+                    value = temp;
+                    pointer = false;
+                }
             }
-            pointer = false;
         } else {
             xref = "";
             tag = split[1];
