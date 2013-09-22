@@ -12,6 +12,7 @@ import org.junit.*;
 public class OldTransmissionTest {
     @Test
     public void testParse() throws ParsingException {
+        @SuppressWarnings("deprecation")
         final Transmission trans = Transmission.parse(new File("src/test/resources/TGC55C.ged"));
         int count = 0;
         for (Cluster record : trans) {
