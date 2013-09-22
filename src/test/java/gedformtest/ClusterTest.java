@@ -1,4 +1,4 @@
-package gedformtest; //TODO: Implement more tests
+package gedformtest;
 
 import com.undeadscythes.gedform.*;
 import com.undeadscythes.gedform.exception.*;
