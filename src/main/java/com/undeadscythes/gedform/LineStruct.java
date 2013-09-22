@@ -133,6 +133,6 @@ public class LineStruct {
      * Concatenate a line of text onto the end of this {@link LineStruct}.
      */
     public LineStruct conc(final String value) {
-        return new LineStruct(level, tag, xref, this.value + value, pointer);
+        return new LineStruct(level, tag, xref, this.value + " " + value, pointer);
     }
 }

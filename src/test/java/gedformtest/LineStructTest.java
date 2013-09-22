@@ -16,6 +16,6 @@ public class LineStructTest {
 
     @Test
     public void testConc() throws ParsingException {
-        assertEquals("conc", "testa", new LineStruct("0 A test").conc("a").value);
+        assertEquals("conc", "test a", new LineStruct("0 A test").conc("a").value);
     }
 }
