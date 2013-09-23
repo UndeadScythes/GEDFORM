@@ -55,4 +55,9 @@ public class ClusterTest extends Assert {
         assertEquals("pullCluster-2", 17, record.pullCluster().size());
         assertEquals("pullCluster-3", 1, record.pullCluster().size());
     }
+
+    @Test
+    public void testClusterInit() throws ParsingException {
+        assertEquals("lineStruct", "test", new Cluster("0 HEAD test").pullHead().value);
+    }
 }

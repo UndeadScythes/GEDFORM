@@ -28,6 +28,15 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
+     * Convenience method for creating {@link Cluster Clusters} from
+     * {@link String Strings}, assuming a single element {@link LineStruct}
+     * list.
+     */
+    public Cluster(final String line) throws ParsingException {
+        this(Arrays.asList(new LineStruct(line)));
+    }
+
+    /**
      * {@link Cluster} with a given initial capacity.
      */
     public Cluster(final int size) {
