@@ -1,7 +1,6 @@
 package com.undeadscythes.gedform;
 
 import com.undeadscythes.gedform.exception.*;
-import static java.lang.Integer.*;
 import java.util.*;
 import org.apache.commons.lang3.*;
 
@@ -58,7 +57,7 @@ public class LineStruct {
     public LineStruct(final String string) throws ParsingException {
         final String[] split = string.split(" ");
         try {
-            level = parseInt(split[0]);
+            level = Integer.parseInt(split[0]);
         } catch (NumberFormatException ex) {
             throw new ParsingException("Could not parse level.", ex);
         }
