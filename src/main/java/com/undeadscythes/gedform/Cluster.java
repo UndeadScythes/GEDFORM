@@ -4,7 +4,7 @@ import com.undeadscythes.gedform.exception.*;
 import java.util.*;
 
 /**
- * A GEDFORM {@link Transmission} contains a number of {@link Cluster}s each
+ * A {@link Transmission} contains a number of {@link Cluster Clusters} each
  * containing data about a distinct entity.
  *
  * @author UndeadScythes
@@ -20,7 +20,8 @@ public class Cluster extends ArrayList<LineStruct> {
     private int index = 0;
 
     /**
-     * New {@link Cluster} from a given list of {@link LineStruct}s.
+     * New {@link Cluster} from a given list of
+     * {@link LineStruct LineStructs}.
      */
     public Cluster(final List<LineStruct> list) {
         super(list.size());
@@ -29,8 +30,9 @@ public class Cluster extends ArrayList<LineStruct> {
 
     /**
      * Convenience method for creating {@link Cluster Clusters} from
-     * {@link String Strings}, assuming a single element {@link LineStruct}
-     * list.
+     * {@link String Strings}, assuming a single {@link LineStruct} list.
+     *
+     * @see Cluster#Cluster(List) Cluster(List)
      */
     public Cluster(final String line) throws ParsingException {
         this(Arrays.asList(new LineStruct(line)));
@@ -78,7 +80,7 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
-     * Check if there are any more sub{@link Cluster}s to read.
+     * Check if there are any more sub-{@link Cluster Clusters} to read.
      */
     public boolean hasNext() {
         return listIterator(index).hasNext();
@@ -97,9 +99,10 @@ public class Cluster extends ArrayList<LineStruct> {
 
     /**
      * Get the {@link LineStruct#tag tag} of the head of this {@link Cluster}, all
-     * sub-{@link Cluster}s should be related to this tag.
+     * sub-{@link Cluster Clusters} should be related to this tag.
      */
-    public String getTag() {
+    public String getTag() throws EmptyClusterException {
+        if (isEmpty()) throw new EmptyClusterException();
         return get(0).tag;
     }
 
@@ -115,8 +118,10 @@ public class Cluster extends ArrayList<LineStruct> {
     }
 
     /**
-     * Convenience method for constructing an arbitrary {@link Cluster} with
-     * level 0, tag '_TLR' and a given value.
+     * Convenience method for constructing an arbitrary {@link Cluster} with a
+     * header equivalent to "0 _TLR" + string.
+     *
+     * @see LineStruct#LineStruct(String)
      */
     public static Cluster topLevel(final String string) throws ParsingException {
         return new Cluster("0 _TLR " + string);
