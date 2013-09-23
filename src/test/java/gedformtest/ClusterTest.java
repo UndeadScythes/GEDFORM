@@ -32,7 +32,7 @@ public class ClusterTest extends Assert {
     }
 
     @Test
-    public void testGet() {
+    public void testGet() throws EmptyClusterException {
         assertEquals("getTag", "HEAD", record.getTag());
     }
 

@@ -25,4 +25,9 @@ public class ExceptionTest {
             assertEquals("Parsing message", "test", ex.getMessage());
         }
     }
+
+    @Test(expected = EmptyClusterException.class)
+    public void testEmptyClusterException() throws EmptyClusterException {
+            throw new EmptyClusterException();
+    }
 }
