@@ -113,4 +113,12 @@ public class Cluster extends ArrayList<LineStruct> {
         }
         throw new NoTagSetException(tag);
     }
+
+    /**
+     * Convenience method for constructing an arbitrary {@link Cluster} with
+     * level 0, tag '_TLR' and a given value.
+     */
+    public static Cluster topLevel(final String string) throws ParsingException {
+        return new Cluster("0 _TLR " + string);
+    }
 }
