@@ -36,6 +36,24 @@ public class Transmission extends ArrayList<Cluster> {
         } catch (FileNotFoundException ex) {
             throw new ParsingException("Could not find specified file.", ex);
         }
+        parse(reader);
+    }
+
+    /**
+     * Parse a file with a given encoding into a {@link Transmission}.
+     */
+    public Transmission(final File file, final String encoding) throws ParsingException, UnsupportedEncodingException {
+        super(0);
+        final BetterReader reader;
+        try {
+            reader = new BetterReader(file, encoding);
+        } catch (FileNotFoundException ex) {
+            throw new ParsingException("Could not find specified file.", ex);
+        }
+        parse(reader);
+    }
+
+    private void parse(final BetterReader reader) throws ParsingException {
         Cluster cluster = new Cluster(0);
         int lineNo = -1;
         while (reader.hasNext()) {
