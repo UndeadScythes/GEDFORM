@@ -6,7 +6,7 @@
 
   <groupId>com.undeadscythes</groupId>
   <artifactId>GEDFORM</artifactId>
-  <version>Alpha-2.1</version>
+  <version>Alpha-2.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <dependencies>
     <dependency>
