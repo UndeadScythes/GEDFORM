@@ -34,7 +34,7 @@ public class Transmission extends ArrayList<Cluster> {
         try {
             reader = new BetterReader(file);
         } catch (FileNotFoundException ex) {
-            throw new ParsingException("Could not find specified file.", ex);
+            throw new ParsingException("Could not find file '" + file.getName() + "'.", ex);
         }
         parse(reader);
     }
@@ -48,7 +48,7 @@ public class Transmission extends ArrayList<Cluster> {
         try {
             reader = new BetterReader(file, encoding);
         } catch (FileNotFoundException ex) {
-            throw new ParsingException("Could not find specified file.", ex);
+            throw new ParsingException("Could not find file '" + file.getName() + "'.", ex);
         }
         parse(reader);
     }
