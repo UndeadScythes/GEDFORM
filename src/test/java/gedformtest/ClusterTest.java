@@ -19,45 +19,45 @@ public class ClusterTest extends Assert {
 
     @Test
     public void testHeader() {
-        assertEquals("pullHead-tag", "HEAD", record.pullHead().tag);
-        assertEquals("pullHead-level", 0, record.pullHead().level);
+        assertEquals("HEAD", record.pullHead().tag);
+        assertEquals(0, record.pullHead().level);
     }
 
     @Test
     public void testCopy() {
         final Cluster copy = record.copy();
         for (int i = 0; i < record.size(); i++) {
-            assertEquals("copy", record.get(i).tag, copy.get(i).tag);
+            assertEquals(record.get(i).tag, copy.get(i).tag);
         }
     }
 
     @Test
     public void testGet() throws EmptyClusterException {
-        assertEquals("getTag", "HEAD", record.getTag());
+        assertEquals("HEAD", record.getTag());
     }
 
     @Test
     public void testHasNext() {
         record.pullHead();
         record.pullCluster();
-        assertTrue("hasNext-true", record.hasNext());
+        assertTrue(record.hasNext());
         for (int i = 0; i < 13; i++) {
             record.pullCluster();
         }
-        assertFalse("hasNext-false", record.hasNext());
+        assertFalse(record.hasNext());
     }
 
     @Test
     public void testCluster() {
-        assertEquals("pullCluster-1", 35, record.pullCluster().size());
+        assertEquals(35, record.pullCluster().size());
         record.reset();
         record.pullHead();
-        assertEquals("pullCluster-2", 17, record.pullCluster().size());
-        assertEquals("pullCluster-3", 1, record.pullCluster().size());
+        assertEquals(17, record.pullCluster().size());
+        assertEquals(1, record.pullCluster().size());
     }
 
     @Test
     public void testClusterInit() throws ParsingException {
-        assertEquals("lineStruct", "test", new Cluster("0 HEAD test").pullHead().value);
+        assertEquals("test", new Cluster("0 HEAD test").pullHead().value);
     }
 }

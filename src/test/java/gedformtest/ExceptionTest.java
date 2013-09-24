@@ -13,7 +13,7 @@ public class ExceptionTest {
         try {
             throw new NoTagSetException("test");
         } catch (NoTagSetException ex) {
-            assertTrue("NoTag message", ex.getMessage().endsWith("test."));
+            assertTrue(ex.getMessage().endsWith("test."));
         }
     }
 
@@ -22,7 +22,7 @@ public class ExceptionTest {
         try {
             throw new ParsingException("test");
         } catch (ParsingException ex) {
-            assertEquals("Parsing message", "test", ex.getMessage());
+            assertEquals("test", ex.getMessage());
         }
     }
 

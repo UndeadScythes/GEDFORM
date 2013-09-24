@@ -23,21 +23,21 @@ public class TransmissionTest {
         for (Cluster record : trans) {
             count += record.size();
         }
-        assertEquals("size()", 1420, count);
-        assertEquals("size()", 67, trans.size());
+        assertEquals(1420, count);
+        assertEquals(67, trans.size());
     }
 
     @Test
     public void testCopy() throws EmptyClusterException {
         final Transmission copy = trans.copy();
         for (int i = 0; i < trans.size(); i++) {
-            assertEquals("copy", trans.get(i).getTag(), copy.get(i).getTag());
+            assertEquals(trans.get(i).getTag(), copy.get(i).getTag());
         }
     }
 
     @Test
     public void testPull() {
-        assertEquals("pullCluster", 35, trans.pullCluster().size());
+        assertEquals(35, trans.pullCluster().size());
     }
 
     @Test
@@ -45,8 +45,8 @@ public class TransmissionTest {
         for (int i = 0; i < 66; i++) {
             trans.pullCluster();
         }
-        assertTrue("hasNext-true", trans.hasNext());
+        assertTrue(trans.hasNext());
         trans.pullCluster();
-        assertFalse("hasNext-false", trans.hasNext());
+        assertFalse(trans.hasNext());
     }
 }

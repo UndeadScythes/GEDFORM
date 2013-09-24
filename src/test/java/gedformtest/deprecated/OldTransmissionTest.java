@@ -18,7 +18,7 @@ public class OldTransmissionTest {
         for (Cluster record : trans) {
             count += record.size();
         }
-        assertEquals("size()", 1420, count);
-        assertEquals("size()", 67, trans.size());
+        assertEquals(1420, count);
+        assertEquals(67, trans.size());
     }
 }
