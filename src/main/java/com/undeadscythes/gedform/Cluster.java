@@ -101,8 +101,7 @@ public class Cluster extends ArrayList<LineStruct> {
      * Get the {@link LineStruct#tag tag} of the head of this {@link Cluster}, all
      * sub-{@link Cluster Clusters} should be related to this tag.
      */
-    public String getTag() throws EmptyClusterException {
-        if (isEmpty()) throw new EmptyClusterException();
+    public String getTag() {
         return get(0).tag;
     }
 

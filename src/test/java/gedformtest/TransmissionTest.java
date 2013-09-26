@@ -28,7 +28,7 @@ public class TransmissionTest {
     }
 
     @Test
-    public void testCopy() throws EmptyClusterException {
+    public void testCopy() {
         final Transmission copy = trans.copy();
         for (int i = 0; i < trans.size(); i++) {
             assertEquals(trans.get(i).getTag(), copy.get(i).getTag());

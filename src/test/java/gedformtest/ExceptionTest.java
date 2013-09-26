@@ -1,8 +1,10 @@
 package gedformtest;
 
-import com.undeadscythes.gedform.exception.*;
-import static org.junit.Assert.*;
-import org.junit.*;
+import com.undeadscythes.gedform.exception.NoTagSetException;
+import com.undeadscythes.gedform.exception.ParsingException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 /**
  * @author UndeadScythes
@@ -24,10 +26,5 @@ public class ExceptionTest {
         } catch (ParsingException ex) {
             assertEquals("test", ex.getMessage());
         }
-    }
-
-    @Test(expected = EmptyClusterException.class)
-    public void testEmptyClusterException() throws EmptyClusterException {
-            throw new EmptyClusterException();
     }
 }

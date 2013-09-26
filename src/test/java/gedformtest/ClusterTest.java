@@ -1,10 +1,14 @@
 package gedformtest;
 
-import com.undeadscythes.gedform.*;
-import com.undeadscythes.gedform.exception.*;
-import gedformtest.implementation.*;
-import static org.junit.Assert.*;
-import org.junit.*;
+import com.undeadscythes.gedform.Cluster;
+import com.undeadscythes.gedform.exception.ParsingException;
+import gedformtest.implementation.TGC55C;
+import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author UndeadScythes
@@ -32,7 +36,7 @@ public class ClusterTest extends Assert {
     }
 
     @Test
-    public void testGet() throws EmptyClusterException {
+    public void testGet() {
         assertEquals("HEAD", record.getTag());
     }
 
