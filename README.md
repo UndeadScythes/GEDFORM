@@ -1,4 +1,4 @@
-# GEDFORM - Alpha-2.2-SNAPSHOT #
+# GEDFORM - Beta-1.0 #
 
 A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
 Family History Department of The Church of Jesus Christ of Latter-day Saints for
@@ -17,4 +17,4 @@ GEDFORM source code is released under the CC BY-NC-SA 2.0 UK license.
 A copy of this licence is located in the file named LICENCE.lic, if this file is
 not present the text can be found [here](http://creativecommons.org/licenses/by-nc-sa/2.0/uk/legalcode).
 
-Last edited on 2013-09-23.
+Last edited on 2013-10-04.
