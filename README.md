@@ -1,4 +1,4 @@
-# GEDFORM - Beta-1.0 #
+# GEDFORM - Beta-1.1-SNAPSHOT #
 
 A GEDCOM, or GEnealogical Data COMunication, is a standard developed by the
 Family History Department of The Church of Jesus Christ of Latter-day Saints for
