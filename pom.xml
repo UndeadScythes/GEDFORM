@@ -12,7 +12,7 @@
     <dependency>
       <groupId>com.undeadscythes</groupId>
       <artifactId>BetterReader</artifactId>
-      <version>Alpha-2.1</version>
+      <version>Beta-1.0</version>
       <type>jar</type>
     </dependency>
     <dependency>
@@ -61,6 +61,7 @@
 	  <execution>
 	    <phase>process-resources</phase>
 	    <goals>
+	      <goal>display-plugin-updates</goal>
 	      <goal>display-dependency-updates</goal>
 	    </goals>
 	  </execution>
